@@ -62,7 +62,7 @@ class HomeViewModel @Inject constructor(
         val recentMoods = state.value.recentMoods
         if (recentMoods.isEmpty()) return 0
         
-        val stressScore = recentMoods.sumOf { mood ->
+        val stressScore = recentMoods.sumBy { mood ->
             when (mood.moodType) {
                 MoodType.STRESSED, MoodType.ANGRY -> 2
                 MoodType.ANXIOUS, MoodType.SAD -> 1
@@ -71,7 +71,7 @@ class HomeViewModel @Inject constructor(
             }
         }
         
-        return (stressScore * 10 / (recentMoods.size * 2)).coerceIn(0, 10)
+        return ((stressScore * 10) / (recentMoods.size * 2)).coerceIn(0, 10)
     }
     
     fun calculateMoodScore(): Int {
@@ -79,7 +79,7 @@ class HomeViewModel @Inject constructor(
         val recentMoods = state.value.recentMoods
         if (recentMoods.isEmpty()) return 50
         
-        val moodScore = recentMoods.sumOf { mood ->
+        val moodScore = recentMoods.sumBy { mood ->
             when (mood.moodType) {
                 MoodType.HAPPY, MoodType.ENERGETIC -> 2
                 MoodType.CALM -> 1
@@ -89,7 +89,7 @@ class HomeViewModel @Inject constructor(
             }
         }
         
-        return (50 + (moodScore * 50 / (recentMoods.size * 2))).coerceIn(0, 100)
+        return (50 + ((moodScore * 50) / (recentMoods.size * 2))).coerceIn(0, 100)
     }
     
     fun calculateConsistencyScore(): Int {

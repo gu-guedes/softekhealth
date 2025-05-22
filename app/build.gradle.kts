@@ -79,8 +79,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
     
-    // Charts for Compose - usando versão compatível com o SDK 34
+    // Charts for Compose - atualizando para versão mais recente
     implementation("co.yml:ycharts:2.1.0")
+    // Adicionar versão alternativa do YCharts caso a principal não funcione
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.patrykandpatrick.vico:core:1.13.1")
+    implementation("com.patrykandpatrick.vico:compose:1.13.1")
+    implementation("com.patrykandpatrick.vico:compose-m3:1.13.1")
     
     // Gson para conversão JSON
     implementation("com.google.code.gson:gson:2.10.1")
@@ -93,6 +98,10 @@ dependencies {
     
     // Apenas bibliotecas AndroidX, sem bibliotecas support antigas
     implementation("androidx.appcompat:appcompat:1.6.1")
+    
+    // Material Icons
+    implementation("androidx.compose.material:material-icons-core:1.6.3")
+    implementation("androidx.compose.material:material-icons-extended:1.6.3")
     
     // Pager for Forms
     implementation("androidx.compose.foundation:foundation:1.5.4")

@@ -1,6 +1,7 @@
 package com.example.softekhealth.presentation.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -451,53 +452,40 @@ fun MoodTrendChart(moods: List<com.example.softekhealth.domain.model.Mood>) {
             Point(index.toFloat(), entry.value)
         }
 
-        if (points.isNotEmpty()) {
-            val xAxisData = AxisData.Builder()
-                .axisStepSize(30.dp)
-                .steps(points.size - 1)
-                .labelData { i -> dateMap.keys.toList()[i.toInt()] }
-                .labelAndAxisLinePadding(15.dp)
-                .build()
-
-            val yAxisData = AxisData.Builder()
-                .steps(4)
-                .labelData { i ->
-                    when (i) {
-                        0f -> "Ruim"
-                        1f -> ""
-                        2f -> "Neutro"
-                        3f -> ""
-                        4f -> "Ótimo"
-                        else -> ""
-                    }
-                }
-                .build()
-
-            val lineChartData = LineChartData(
-                linePlotData = LinePlotData(
-                    lines = listOf(
-                        Line(
-                            dataPoints = points,
-                            LineStyle(color = MaterialTheme.colorScheme.primary, width = 3.dp),
-                            IntersectionPoint(color = MaterialTheme.colorScheme.primary, radius = 4.dp),
-                            SelectionHighlightPoint(color = MaterialTheme.colorScheme.primary),
-                            ShadowUnderLine(color = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f))
-                        )
-                    ),
-                    gridLines = GridLines(color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.1f))
-                ),
-                xAxisData = xAxisData,
-                yAxisData = yAxisData,
-                backgroundColor = MaterialTheme.colorScheme.surface
-            )
-
-            LineChart(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(220.dp),
-                lineChartData = lineChartData
-            )
-        } else {
+        // Implementação temporária simplificada enquanto resolvemos problemas com a biblioteca YCharts
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(220.dp)
+                .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(8.dp))
+                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(8.dp)),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Icon(
+                    imageVector = Icons.Default.BarChart,
+                    contentDescription = "Gráfico",
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(40.dp)
+                )
+                
+                Spacer(modifier = Modifier.height(8.dp))
+                
+                Text(
+                    text = "Visualização de tendências",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                
+                Spacer(modifier = Modifier.height(4.dp))
+                
+                Text(
+                    text = "${points.size} registros nos últimos 14 dias",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        if (points.isEmpty()) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
