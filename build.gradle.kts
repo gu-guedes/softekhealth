@@ -6,11 +6,3 @@ plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     id("com.google.dagger.hilt.android") version "2.50" apply false
 }
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url = uri("https://jitpack.io") }
-    }
-}
