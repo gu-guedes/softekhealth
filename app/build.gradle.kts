@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "com.example.softekhealth"
-    compileSdk = 34 // Reduzido para 34 para melhor compatibilidade
+    compileSdk = 35 // Atualizado para 35 conforme exigido pelas dependências
 
     defaultConfig {
         applicationId = "com.example.softekhealth"
-        minSdk = 24
-        targetSdk = 34 // Reduzido para 34 para melhor compatibilidade
+        minSdk = 26 // Atualizado para 26 conforme exigido pelo YCharts
+        targetSdk = 35 // Atualizado para 35 para combinar com compileSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -52,23 +52,23 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     
-    // Navigation Compose
-    implementation("androidx.navigation:navigation-compose:2.7.5")
+    // Navigation Compose - versão atualizada
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     
-    // Room components
+    // Room components - versão compatível com SDK 35
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
     
-    // Hilt DI
-    implementation("com.google.dagger:hilt-android:2.49")
-    kapt("com.google.dagger:hilt-android-compiler:2.49")
+    // Hilt DI - versão atualizada compatível com SDK 35
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-android-compiler:2.50")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
     
-    // Coroutines & Lifecycle
+    // Coroutines & Lifecycle - versões atualizadas compatíveis com SDK 35
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
     
     // Charts for Compose - usando versão compatível com o SDK 34
     implementation("co.yml:ycharts:2.1.0")
@@ -76,11 +76,8 @@ dependencies {
     // Gson para conversão JSON
     implementation("com.google.code.gson:gson:2.10.1")
     
-    // Adicionado para resolver erros de compilação com Kotlin 1.9.x
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0-alpha")
+    // Apenas bibliotecas AndroidX, sem bibliotecas support antigas
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.android.support:appcompat-v7:28.0.0")
-    implementation("com.android.support:support-v4:28.0.0")
     
     // Pager for Forms
     implementation("androidx.compose.foundation:foundation:1.5.4")
