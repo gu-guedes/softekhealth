@@ -9,6 +9,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven { url = uri("https://jitpack.io") } // Adicionado para MPAndroidChart e outras bibliotecas JitPack
     }
 }
 dependencyResolutionManagement {
@@ -16,9 +17,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://jitpack.io") } // Adicionado para MPAndroidChart e outras bibliotecas JitPack
     }
 }
 
 rootProject.name = "softekhealth"
 include(":app")
- 

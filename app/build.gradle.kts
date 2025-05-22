@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "com.example.softekhealth"
-    compileSdk = 35
+    compileSdk = 34 // Reduzido para 34 para melhor compatibilidade
 
     defaultConfig {
         applicationId = "com.example.softekhealth"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 34 // Reduzido para 34 para melhor compatibilidade
         versionCode = 1
         versionName = "1.0"
 
@@ -70,9 +70,17 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
     
-    // Charts for Compose
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    // Charts for Compose - usando versão compatível com o SDK 34
     implementation("co.yml:ycharts:2.1.0")
+    
+    // Gson para conversão JSON
+    implementation("com.google.code.gson:gson:2.10.1")
+    
+    // Adicionado para resolver erros de compilação com Kotlin 1.9.x
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0-alpha")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.android.support:appcompat-v7:28.0.0")
+    implementation("com.android.support:support-v4:28.0.0")
     
     // Pager for Forms
     implementation("androidx.compose.foundation:foundation:1.5.4")
