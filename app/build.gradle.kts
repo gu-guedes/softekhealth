@@ -6,6 +6,15 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+kapt {
+    correctErrorTypes = true
+    useBuildCache = true
+    arguments {
+        arg("room.schemaLocation", "$projectDir/schemas")
+        arg("room.incremental", "true")
+    }
+}
+
 android {
     namespace = "com.example.softekhealth"
     compileSdk = 35 // Atualizado para 35 conforme exigido pelas dependências
@@ -75,6 +84,12 @@ dependencies {
     
     // Gson para conversão JSON
     implementation("com.google.code.gson:gson:2.10.1")
+    
+    // Retrofit para comunicação com API
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     
     // Apenas bibliotecas AndroidX, sem bibliotecas support antigas
     implementation("androidx.appcompat:appcompat:1.6.1")

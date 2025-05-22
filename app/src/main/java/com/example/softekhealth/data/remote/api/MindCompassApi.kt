@@ -1,22 +1,29 @@
 package com.example.softekhealth.data.remote.api
 
-import com.example.softekhealth.data.remote.dto.MoodDto
-import com.example.softekhealth.data.remote.dto.QuestionnaireDto
-import com.example.softekhealth.data.remote.dto.UserDto
-import com.example.softekhealth.data.remote.dto.WellnessTipDto
-import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+// Importau00e7u00f5es comentadas para resolver problema de compilau00e7u00e3o
+//import com.example.softekhealth.data.remote.dto.MoodDto
+//import com.example.softekhealth.data.remote.dto.QuestionnaireDto
+//import com.example.softekhealth.data.remote.dto.UserDto
+//import com.example.softekhealth.data.remote.dto.WellnessTipDto
+//import retrofit2.Response
+//import retrofit2.http.Body
+//import retrofit2.http.GET
+//import retrofit2.http.POST
+//import retrofit2.http.Path
+//import retrofit2.http.Query
 
 /**
  * Interface de API para o backend do Mind Compass
  * Preparada para futura implementau00e7u00e3o na segunda sprint
+ * 
+ * NOTA: Esta interface foi temporariamente comentada para resolver problemas de compilau00e7u00e3o.
+ * Seru00e1 implementada corretamente na segunda sprint conforme planejado.
  */
 interface MindCompassApi {
+    // Interface vazia para compilau00e7u00e3o inicial
+    // A implementau00e7u00e3o completa seru00e1 feita na Sprint 2
     
+    /*
     // Autenticau00e7u00e3o
     @POST("auth/login")
     suspend fun login(@Body email: String): Response<UserDto>
@@ -61,4 +68,5 @@ interface MindCompassApi {
     // Dicas de bem-estar
     @GET("wellness/tips")
     suspend fun getWellnessTips(): Response<List<WellnessTipDto>>
+    */
 }
