@@ -62,12 +62,13 @@ class HomeViewModel @Inject constructor(
         val recentMoods = state.value.recentMoods
         if (recentMoods.isEmpty()) return 0
         
-        val stressScore = recentMoods.sumBy { mood ->
+        val stressScore = recentMoods.sumOf { mood ->
             when (mood.moodType) {
                 MoodType.STRESSED, MoodType.ANGRY -> 2
                 MoodType.ANXIOUS, MoodType.SAD -> 1
                 MoodType.NEUTRAL -> 0
-                else -> -1
+                MoodType.HAPPY, MoodType.ENERGETIC, MoodType.CALM -> -1
+                else -> -1 // Para qualquer tipo de humor não especificado
             }
         }
         
@@ -79,13 +80,14 @@ class HomeViewModel @Inject constructor(
         val recentMoods = state.value.recentMoods
         if (recentMoods.isEmpty()) return 50
         
-        val moodScore = recentMoods.sumBy { mood ->
+        val moodScore = recentMoods.sumOf { mood ->
             when (mood.moodType) {
                 MoodType.HAPPY, MoodType.ENERGETIC -> 2
                 MoodType.CALM -> 1
                 MoodType.NEUTRAL -> 0
                 MoodType.SAD, MoodType.TIRED -> -1
-                else -> -2
+                MoodType.STRESSED, MoodType.ANXIOUS, MoodType.ANGRY -> -2
+                else -> -2 // Para qualquer tipo de humor não especificado
             }
         }
         

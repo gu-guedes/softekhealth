@@ -48,6 +48,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import com.example.softekhealth.ui.theme.Angry
+import com.example.softekhealth.ui.theme.Calm
+import com.example.softekhealth.ui.theme.Error
+import com.example.softekhealth.ui.theme.Happy
+import com.example.softekhealth.ui.theme.Info
+import com.example.softekhealth.ui.theme.Neutral
+import com.example.softekhealth.ui.theme.Sad
+import com.example.softekhealth.ui.theme.Stressed
+import com.example.softekhealth.ui.theme.Success
+import com.example.softekhealth.ui.theme.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
