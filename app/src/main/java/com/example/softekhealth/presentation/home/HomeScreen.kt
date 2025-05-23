@@ -242,22 +242,35 @@ fun MoodSelectionSection(
             MoodType.ANGRY to "Irritado"
         )
 
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
-            contentPadding = PaddingValues(8.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            items(moods) { (moodType, color) ->
-                MoodItem(
-                    emoji = moodEmojis[moodType] ?: "",
-                    description = moodDescriptions[moodType] ?: "",
-                    color = color,
-                    isSelected = selectedMood == moodType,
-                    onClick = { onMoodSelected(moodType) }
-                )
+        // Substituindo LazyVerticalGrid por um Grid de componentes fixos
+    // para evitar o problema de aninhamento de componentes roláveis
+    Column {
+        for (i in 0 until moods.size step 3) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                for (j in i until minOf(i + 3, moods.size)) {
+                    val (moodType, color) = moods[j]
+                    MoodItem(
+                        emoji = moodEmojis[moodType] ?: "",
+                        description = moodDescriptions[moodType] ?: "",
+                        color = color,
+                        isSelected = selectedMood == moodType,
+                        onClick = { onMoodSelected(moodType) },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                // Adicionar espaços vazios se a linha não estiver completa
+                repeat(minOf(3, moods.size) - minOf(i + 3, moods.size) % 3) {
+                    if (i + 3 > moods.size) { // Só adiciona espaços se a linha não estiver completa
+                        Spacer(modifier = Modifier.weight(1f))
+                    }
+                }
             }
+            Spacer(modifier = Modifier.height(16.dp))
         }
+    }
     }
 }
 
@@ -267,7 +280,8 @@ fun MoodItem(
     description: String,
     color: Color,
     isSelected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
