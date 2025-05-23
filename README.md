@@ -2,7 +2,7 @@
 
 ## Sobre o Projeto
 
-Mind Compass é um aplicativo mobile Android desenvolvido para a Softtek, focado no monitoramento anônimo do bem-estar psicossocial dos colaboradores. O aplicativo permite que os usuários registrem seu humor diário, preencham questionários de autoavaliação e recebam dicas de bem-estar.
+Mind Compass é um aplicativo mobile Android desenvolvido para a Softtek, focado no monitoramento anônimo do bem-estar psicossocial dos colaboradores. O aplicativo permite que os usuários registrem seu humor diário, preencham questionários de autoavaliação e recebam dicas de bem-estar. A aplicação utiliza uma arquitetura moderna, com Jetpack Compose para a interface e preparada para integração com backend REST na próxima sprint.
 
 ## Arquitetura
 
@@ -54,13 +54,18 @@ O projeto segue os princípios de Clean Architecture e o padrão MVVM (Model-Vie
 
 ## Tecnologias Utilizadas
 
-- **Linguagem**: Kotlin
-- **UI Framework**: Jetpack Compose
+- **Linguagem**: Kotlin 2.0.21
+- **UI Framework**: Jetpack Compose 2023.10.01
 - **Persistência Local**: Room Database
 - **Injeção de Dependência**: Hilt
 - **Navegação**: Navigation Compose
 - **Coroutines & Flow**: Para operações assíncronas
-- **Lifecycle**: ViewModel e LiveData
+- **Lifecycle**: ViewModel e StateFlow
+- **Gerenciamento de Dependências**: Gradle 8.11.1 com Version Catalogs
+- **Compilação SDK**: Android 35 (Android 15)
+- **Minimum SDK**: 26 (Android 8.0)
+- **Target SDK**: 35 (Android 15)
+- **Gráficos e Visualização**: YCharts e MPAndroidChart
 
 ## Decisões Técnicas e Justificativas
 
@@ -81,6 +86,11 @@ O Hilt simplifica a injeção de dependência no Android, reduzindo a quantidade
 
 ### Privacidade e Anonimidade
 O aplicativo coleta apenas o e-mail corporativo (@softtek.com) para identificação, sem solicitar outros dados pessoais, garantindo o anonimato dos usuários nas avaliações de bem-estar.
+
+### Correções e Melhorias Recentes
+- **Correção de Layout Aninhado**: Resolvido problema de crash na tela inicial causado por componentes roláveis aninhados (LazyVerticalGrid dentro de Column com verticalScroll), substituindo por implementação com layout fixo.
+- **Otimização de Desempenho**: Melhorado o carregamento e renderização dos componentes da tela inicial.
+- **Preparação para Backend**: Estruturação dos DTOs e interfaces de API para integração futura com backend REST.
 
 ## Como Executar o Projeto
 
@@ -155,8 +165,30 @@ O aplicativo coleta apenas o e-mail corporativo (@softtek.com) para identificaç
 
 ## Próximos Passos (Sprint 2)
 
-- Implementação de backend para sincronização de dados
-- Dashboard administrativo para visualização de métricas agregadas
+### Implementação de Backend REST
+
+A API está planejada com os seguintes endpoints:
+
+#### Autenticação
+- **POST** `/auth/login` - Login do usuário usando email corporativo
+
+#### Gerenciamento de Humor
+- **POST** `/moods` - Salvar um novo registro de humor
+- **GET** `/moods?userEmail={email}` - Obter todos os registros de humor de um usuário
+- **GET** `/moods/recent?userEmail={email}&limit={quantidade}` - Obter os registros de humor mais recentes
+- **GET** `/moods/range?userEmail={email}&startDate={dataInicio}&endDate={dataFim}` - Obter registros de humor por intervalo de datas
+
+#### Gerenciamento de Questionários
+- **POST** `/questionnaires` - Salvar um novo questionário preenchido
+- **GET** `/questionnaires/{id}` - Obter um questionário específico pelo ID
+- **GET** `/questionnaires?userEmail={email}` - Obter todos os questionários de um usuário
+- **GET** `/questionnaires/range?userEmail={email}&startDate={dataInicio}&endDate={dataFim}` - Obter questionários por intervalo de datas
+
+#### Dicas de Bem-estar
+- **GET** `/wellness/tips` - Obter lista de dicas de bem-estar
+
+### Outras Melhorias Planejadas
+- Dashboard administrativo para visualização de métricas agregadas anônimas
 - Análise de tendências e alertas para problemas coletivos
 - Ampliação do questionário com novas dimensões de avaliação
 
