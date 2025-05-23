@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose") version "1.9.0"  // Remova esta linha
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
