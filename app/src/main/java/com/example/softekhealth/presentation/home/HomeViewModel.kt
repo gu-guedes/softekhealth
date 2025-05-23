@@ -69,7 +69,7 @@ class HomeViewModel @Inject constructor(
                 MoodType.NEUTRAL -> 0
                 MoodType.HAPPY, MoodType.ENERGETIC, MoodType.CALM -> -1
                 else -> -1 // Para qualquer tipo de humor não especificado
-            }
+            }.toInt()
         }
         
         return ((stressScore * 10) / (recentMoods.size * 2)).coerceIn(0, 10)
@@ -88,7 +88,7 @@ class HomeViewModel @Inject constructor(
                 MoodType.SAD, MoodType.TIRED -> -1
                 MoodType.STRESSED, MoodType.ANXIOUS, MoodType.ANGRY -> -2
                 else -> -2 // Para qualquer tipo de humor não especificado
-            }
+            }.toInt()
         }
         
         return (50 + ((moodScore * 50) / (recentMoods.size * 2))).coerceIn(0, 100)

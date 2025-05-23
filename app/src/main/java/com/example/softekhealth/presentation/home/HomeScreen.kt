@@ -170,12 +170,14 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             // Seção de dicas de bem-estar
-            WellnessTipsSection()
+            //WellnessTipsSection()
 
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
+
+
 
 @Composable
 fun MoodSelectionSection(
@@ -532,8 +534,8 @@ fun WellnessTipsSection() {
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             contentPadding = PaddingValues(horizontal = 4.dp, vertical = 4.dp)
         ) {
-            items(wellnessTips) { tip ->
-                WellnessTipCard(tip)
+            //items(wellnessTips) { tip ->
+              //  WellnessTipCard(tip)
             }
         }
     }

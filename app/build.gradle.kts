@@ -47,6 +47,9 @@ android {
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1" // Compatível com Kotlin 1.9.0
+    }
 }
 
 dependencies {
